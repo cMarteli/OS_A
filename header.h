@@ -26,6 +26,7 @@
 struct Process
 {
 	int arrivalTime, burstTime, priority; /*all integers*/
+	char letter;
 	
 };
 typedef struct
@@ -41,7 +42,11 @@ typedef struct
 //void priorityScheduler();
 void printInfo(Input* inp);
 
-
+//schedulers.c
+void priority(Input* inp);
+struct Process compareArrival(struct Process p1, struct Process p2);
+int comparePriority(const void *p1, const void *p2);
+//int compare(struct Process* s1, struct Process* s2);
 
 //fileIO.c
 void loadInput(char* filename, Input* inp);

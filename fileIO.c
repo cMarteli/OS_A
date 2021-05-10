@@ -34,6 +34,7 @@ Input processInput(char* filename)
 	Input inp;
 	FILE* fp = fopen(filename, "r");
 	int i, lineNum;
+	char symbol = 'A';
 
 	lineNum = countLines(filename);
 	inp.totalProcesses = lineNum; /*gets number of processes on file by counting the lines*/
@@ -42,6 +43,9 @@ Input processInput(char* filename)
 	{
 		fscanf(fp,"%d %d %d", \
 			&inp.processes[i].arrivalTime, &inp.processes[i].burstTime, &inp.processes[i].priority);
+		/*assigns process a letter for gant*/
+		inp.processes[i].letter = symbol;
+		symbol++;
 	}
 	fclose(fp);
 	return inp;

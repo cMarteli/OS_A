@@ -10,7 +10,7 @@
 CC		 = gcc
 EXEC	 = program #Change
 CFLAGS = #-Wall -ansi -pedantic
-OBJ 	 = main.o fileIO.o#Change
+OBJ 	 = main.o fileIO.o schedulers.o#Change
 
 # Add FANCY to the CFLAGS and recompile the program
 ifdef FANCY 
@@ -29,8 +29,10 @@ $(EXEC) : $(OBJ)
 
 main.o : main.c #change and add classes
 fileIO.o : fileIO.c
+schedulers.o : schedulers.c
 	$(CC) $(CFLAGS) main.c -c
 	$(CC) $(CFLAGS) fileIO.c -c
+	$(CC) $(CFLAGS) schedulers.c -c
 
 clean:
 	rm -f $(EXEC) $(OBJ)
