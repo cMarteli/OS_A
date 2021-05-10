@@ -9,7 +9,7 @@
 void priority(Input* inp)
 {
 	//sort
-	qsort(inp->processes, inp->totalProcesses, sizeof(struct Process), comparePriority);
+	qsort(inp->processes, inp->totalProcesses, sizeof(struct Process), compareArrival);
 
 	//printf("Process %c has arrival time of %d\n",p.letter, p.arrivalTime);
   
@@ -20,17 +20,11 @@ void priority(Input* inp)
 * Takes two processes, returns the one with earliest arrival time
 * if the same returns first parameter
 */
-struct Process compareArrival(struct Process p1, struct Process p2)
+int compareArrival(const void *s1, const void *s2)
 {
-	if(p1.arrivalTime <= p2.arrivalTime)
-	{
-		return p1;
-	}
-	else
-	{
-		return p2;
-	}
-
+	struct Process *p1 = (struct Process *)s1;
+	struct Process *p2 = (struct Process *)s2;
+	return(p1->arrivalTime - p2->arrivalTime);
 
 }
 /*

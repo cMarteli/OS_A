@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /*Boolean*/
 #define FALSE 0
@@ -38,13 +39,13 @@ typedef struct
 
 //Methods
 //main
-
-//void priorityScheduler();
+void enter();
 void printInfo(Input* inp);
+void menu();
 
 //schedulers.c
 void priority(Input* inp);
-struct Process compareArrival(struct Process p1, struct Process p2);
+int compareArrival(const void *s1, const void *s2);
 int comparePriority(const void *p1, const void *p2);
 //int compare(struct Process* s1, struct Process* s2);
 
