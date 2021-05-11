@@ -66,11 +66,8 @@ void loadInput(char* filename, Input* inp);
 Input processInput(char* filename);
 int countLines(char* filename);
 
-
-
 //header priorityQueue.c
 Node* newNode(int d, int p, char l);
-int peek(Node** head);
 void pop(Node** head);
 void push(Node** head, int b, int p, char l);
 int isEmpty(Node** head);

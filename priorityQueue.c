@@ -2,12 +2,14 @@
 /*   Author: Caio Marteli              */
 /*   Student ID: 19598552              */
 /*   Name: priorityQueue.c             */
-/*                                     */
+/*   OS Assignment                     */
 /*  ================================== */
 #include "header.h"
-
  
-// Function to Create A New Node PARAMS burst time and priority
+/*
+* Creates new readyQeue by creating head node also holds letter for PID
+* IMPORT: [b]urst(integer), [p]riority(integer), [l]etter(char)
+*/
 Node* newNode(int d, int p, char l)
 {
     Node* temp = (Node*)malloc(sizeof(Node));
@@ -19,14 +21,10 @@ Node* newNode(int d, int p, char l)
     return temp;
 }
  
-// Return the value at head
-int peek(Node** head)
-{
-    return (*head)->burst;
-}
- 
-// Removes the element with the
-// highest priority form the list
+/*
+* Removes element at head of list
+* IMPORT: head(struct pointer)
+*/
 void pop(Node** head)
 {
     Node* temp = *head;
@@ -34,41 +32,38 @@ void pop(Node** head)
     free(temp);
 }
  
-// Function to push according to priority
-//d= burst, p = priority
+/*
+* Function to push according to priority
+* IMPORT: [b]urst(integer), [p]riority(integer), [l]etter(char)
+*/
 void push(Node** head, int b, int p, char l)
 {
-    Node* start = (*head);
- 
-    // Create new Node
+    Node* start = (*head); 
     Node* temp = newNode(b, p, l);
- 
-    // Special Case: The head of list has lesser
-    // priority than new node. So insert new
-    // node before head node and change head node.
-    if ((*head)->priority > p) {
- 
-        // Insert New Node before head
+
+    // If new head of has lesser priority we insert new node before head.
+    if ((*head)->priority > p) 
+    { 
         temp->next = *head;
         (*head) = temp;
     }
-    else {
- 
-        // Traverse the list and find a
-        // position to insert new node
-        while (start->next != NULL &&
-            start->next->priority < p) {
+    else 
+    { 
+        // Goes through list and finds position to insert node
+        while (start->next != NULL && start->next->priority < p) 
+        {
             start = start->next;
         }
- 
-        // Either at the ends of the list
-        // or at required position
         temp->next = start->next;
         start->next = temp;
     }
 }
  
-// Function to check is list is empty
+/*
+* Checks if list is empty
+* IMPORT: head(struct pointer)
+* EXPORT: boolean(int)
+*/
 int isEmpty(Node** head)
 {
     return (*head) == NULL;

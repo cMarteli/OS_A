@@ -1,15 +1,19 @@
 /*  ================================== */
 /*   Author: Caio Marteli              */
 /*   Student ID: 19598552              */
-/*   Name: fileio.c                    */
-/*                                     */
+/*   Name: schedulers.c                */
+/*   OS Assignment                     */
 /*  ================================== */
 #include "header.h"
 
+/*
+* Starts PP scheduler draws gant and ticks clock forward
+* IMPORT: inp(struct pointer)
+*/
 void priority(Input* inp)
 {
 	int currentTime = 0, totalBurstTime = 0;
-	//sorting
+	//sorts input array by arrival time
 	qsort(inp->processes, inp->totalProcesses, sizeof(struct Process), compareArrival);
 
 	//create ready queue with first element on list
@@ -23,7 +27,7 @@ void priority(Input* inp)
 	}
 	//clock tick
 	while (!isEmpty(&rq)) {
-	printf("%c:%d|", rq->letter, rq->burst);
+	printf("%c:%d|", rq->letter, rq->burst); //Draws GANT
 	currentTime++; //clock tick
 	rq->burst--; //decreases processing time by a clock tick
 	addToReadyQ(inp, rq, &currentTime); //adds to ready queue
@@ -35,11 +39,13 @@ void priority(Input* inp)
 	printf("\n");
 
 }
-//inp = address of input array, rq = address of ready Q, ct= current time
+
+/*
+* Adds any processes at current A.T to readyQueue
+* IMPORT: inp(address of input array), [r]eady[q]ueue(struct pointer), [c]urrent[t]ime(int pointer)
+*/
 void addToReadyQ(Input* inp, Node* rq, int* ct)
 {
-	//ct++; //advances time by 1
-	//adds any processes at current A.T to readyQueue
 	for(int i = 0; i < inp->totalProcesses; i++)
 	{
 		if(inp->processes[i].arrivalTime == *ct)
@@ -50,16 +56,9 @@ void addToReadyQ(Input* inp, Node* rq, int* ct)
 
 }
 
-void draw()
-{
-
-}
-
-
-
 /*
 * Takes two processes, returns the one with earliest arrival time
-* if the same returns first parameter
+* if the same returns first parameter, used for sorting input array
 */
 int compareArrival(const void *s1, const void *s2)
 {
@@ -70,7 +69,7 @@ int compareArrival(const void *s1, const void *s2)
 }
 /*
 * Takes two processes, returns the one with highest priority (lowest number)
-* if the same returns first parameter
+* if the same returns first parameter, used for sorting input array
 */
 int comparePriority(const void *s1, const void *s2)
 {

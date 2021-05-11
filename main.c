@@ -11,14 +11,11 @@
 int main()
 {
 	menu();
-
-
 	return 0;
 }
 
 /*
-* IMPORT: Board and Missile structs loaded with information from file
-* Calls methods depending on user choice
+* Simple menu, allows for fileName entering or command 'QUIT' by user
 */
 void menu()
 {
@@ -34,7 +31,6 @@ void menu()
 				printf("****Goodbye!****\n");
 				pass = TRUE;
 			}
-
 			else
 			{
 				//enter(userStr);
@@ -42,15 +38,21 @@ void menu()
 			}
 	}while(pass != TRUE);
 }
-
+/*
+* Method for loading input file from filename parameter
+* IMPORT: filename(char)
+*/
 void enter(char* filename)
 {
-
 	Input input;
 	loadInput(filename, &input);
 	priority(&input);
 }
 
+/*
+* Utility/debug method prints relevant information from struct made from input file
+* IMPORT: inp(struct pointer)
+*/
 void printInfo(Input* inp)
 {
 	int i;
@@ -60,10 +62,4 @@ void printInfo(Input* inp)
 		printf("Symbol:%c\nA.T:%d\nB.T:%d\nPRIO:%d\n\n",
 			inp->processes[i].letter, inp->processes[i].arrivalTime, inp->processes[i].burstTime, inp->processes[i].priority);
 	}
-}
-
-/*Clears screen*/
-void clrscr()
-{
-    system("cls||clear");
 }
