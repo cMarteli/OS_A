@@ -59,7 +59,7 @@ void menu();
 void priority(Input* inp);
 int compareArrival(const void *s1, const void *s2);
 int comparePriority(const void *p1, const void *p2);
-void addToReadyQ(Input* inp, Node* rq, int* ct);
+void addToReadyQ(Input* inp, Node** rq, int* ct);
 
 //fileIO.c
 void loadInput(char* filename, Input* inp);
