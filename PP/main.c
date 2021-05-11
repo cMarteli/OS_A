@@ -34,7 +34,7 @@ void menu()
 			else
 			{
 				enter(userStr);
-				//enter("burst_list"); //debug HARDCODED
+				//enter("burst_list2"); //debug HARDCODED
 			}
 	}while(pass != TRUE);
 }

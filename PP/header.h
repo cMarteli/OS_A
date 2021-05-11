@@ -58,7 +58,6 @@ void menu();
 //schedulers.c
 void priority(Input* inp);
 int compareArrival(const void *s1, const void *s2);
-int comparePriority(const void *p1, const void *p2);
 void addToReadyQ(Input* inp, Node** rq, int* ct);
 
 //fileIO.c
@@ -67,9 +66,9 @@ Input processInput(char* filename);
 int countLines(char* filename);
 
 //header priorityQueue.c
-Node* newNode(int d, int p, char l);
-void pop(Node** head);
-void push(Node** head, int b, int p, char l);
+Node* createNode(int d, int p, char l);
+void dequeue(Node** head);
+void queue(Node** head, int b, int p, char l);
 int isEmpty(Node** head);
 
 
