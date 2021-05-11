@@ -9,7 +9,8 @@
 # Makefile Variables
 CC		 = gcc
 EXEC	 = ThreadProgram
-CFLAGS = #-Wall -ansi -pedantic
+CCFLAGS = -Wall
+LFLAGS = -lpthread
 OBJ 	 = parentThread.o
 
 # Add FANCY to the CFLAGS and recompile the program
@@ -25,11 +26,10 @@ DEBUG : clean $(EXEC)
 endif
 
 $(EXEC) : $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC)
+	$(CC) $(OBJ) -o $(EXEC) $(LFLAGS)
 
 parentThread.o : parentThread.c #change and add classes
-
-	$(CC) $(CFLAGS) parentThread.c -c
+	$(CC) $(CCFLAGS) parentThread.c -c
 
 clean:
 	rm -f $(EXEC) $(OBJ)

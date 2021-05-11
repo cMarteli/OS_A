@@ -9,7 +9,7 @@
 # Makefile Variables
 CC		 = gcc
 EXEC	 = SRTF #Change
-CFLAGS = #-Wall -ansi -pedantic
+CFLAGS = -Wall #-ansi -pedantic
 OBJ 	 = main.o fileIO.o schedulers.o shortestFirst.o#Change
 
 # Add FANCY to the CFLAGS and recompile the program

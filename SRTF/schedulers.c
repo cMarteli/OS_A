@@ -12,7 +12,7 @@
 */
 void shortestFirst(Input* inp)
 {
-	int currentTime = 0, totalBurstTime = 0;
+	int currentTime = 0;
 	double avgWaitTime = 0.0, avgTurnTime = 0.0;
 	char currentProccess = ' ';
 	int index = 0;
@@ -61,8 +61,10 @@ void shortestFirst(Input* inp)
 	}
 	temp = temp - waitingTime[index];//deletes last added value for avg
 	avgWaitTime = temp /(index+1);
+	avgTurnTime = getAvgBurst(inp) + avgWaitTime;
 
 	printf("\nAverage waiting time: %0.2f\n", avgWaitTime);
+	printf("Average turnaround time: %0.2f\n", avgTurnTime);
 
 	free(waitingTime);
 
@@ -81,7 +83,21 @@ void addToReadyQ(Input* inp, Node** rq, int* ct)
 			queue(rq, inp->processes[i].burstTime, inp->processes[i].letter);
 		}
 	}
+}
 
+/*
+* EXPORT: averageBurstTime(double)
+* IMPORT: inp(address of input array), [r]eady[q]ueue(struct pointer), [c]urrent[t]ime(int pointer)
+*/
+double getAvgBurst(Input* inp)
+{
+	double temp = 0.0, avgBurst = 0.0;
+	for(int i = 0; i < inp->totalProcesses; i++)
+	{
+		temp += inp->processes[i].burstTime;
+	}
+	avgBurst = temp/inp->totalProcesses;
+	return avgBurst;
 }
 
 /*

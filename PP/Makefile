@@ -9,7 +9,8 @@
 # Makefile Variables
 CC		 = gcc
 EXEC	 = PP
-CFLAGS = #-Wall -ansi -pedantic
+CFLAGS = -Wall #-ansi -pedantic
+LFLAGS = # -lpthread
 OBJ 	 = main.o fileIO.o schedulers.o priorityQueue.o#Change
 
 # Add FANCY to the CFLAGS and recompile the program
@@ -25,7 +26,7 @@ DEBUG : clean $(EXEC)
 endif
 
 $(EXEC) : $(OBJ)
-	$(CC) $(OBJ) -o $(EXEC)
+	$(CC) $(OBJ) -o $(EXEC) $(LFLAGS)
 
 main.o : main.c #change and add classes
 fileIO.o : fileIO.c

@@ -56,6 +56,7 @@ void menu();
 void shortestFirst(Input* inp);
 int compareArrival(const void *s1, const void *s2);
 void addToReadyQ(Input* inp, Node** rq, int* ct);
+double getAvgBurst(Input* inp);
 
 //fileIO.c
 void loadInput(char* filename, Input* inp);
