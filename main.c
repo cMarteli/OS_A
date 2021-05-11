@@ -7,21 +7,11 @@
 
 #include "header.h"
 
-/*!!!!!!!!!!!!!!!Has to be changed to take an array as parameter*/
-/*
-void priorityScheduler(Process p)
-{
-	printf("Burst Time: %d\nPriority: %d\nArrival Time: %d\n", p.burstTime, //
-		p.priority, p.arrivalTime);
-
-}
-*/
-
-
 
 int main()
 {
 	menu();
+
 
 	return 0;
 }
@@ -32,19 +22,14 @@ int main()
 */
 void menu()
 {
-	char userStr[10];
+	char userStr[11];
 	int pass = FALSE;
 	do
 	{
-		printf("PP simulation:\n[ENTER] file name\n[QUIT]\n");		
+		printf("PP simulation:\n");		
 		scanf("%s", userStr);
 		
-			if(strcmp(userStr, "ENTER") == 0)
-			{
-				enter();
-			}
-
-			else if(strcmp(userStr, "QUIT") == 0)
+			if(strcmp(userStr, "QUIT") == 0)
 			{
 				printf("****Goodbye!****\n");
 				pass = TRUE;
@@ -52,30 +37,18 @@ void menu()
 
 			else
 			{
-			printf("!!Command not found!!\n");
+				//enter(userStr);
+				enter("burst_list"); //delete HARDCODED
 			}
 	}while(pass != TRUE);
 }
 
-void enter()
+void enter(char* filename)
 {
-	
-	char* filename= "burst_list"; //delete HARDCODED
-	
-
-	//uncomment before submission!!!!
-	//char filename[11] = " ";
-	//printf("Please enter file name:\n");
-	//scanf("%10s", fn);
 
 	Input input;
 	loadInput(filename, &input);
-	
-	printInfo(&input);
-	printf("-------------------------------------------\n");
 	priority(&input);
-	printInfo(&input);
-
 }
 
 void printInfo(Input* inp)

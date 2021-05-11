@@ -37,9 +37,21 @@ typedef struct
 	
 } Input;
 
+// Node
+typedef struct node {
+    int burst;
+    char letter;
+ 
+    // Lower values indicate higher priority
+    int priority;
+ 
+    struct node* next;
+ 
+} Node;
+
 //Methods
 //main
-void enter();
+void enter(char* filename);
 void printInfo(Input* inp);
 void menu();
 
@@ -47,12 +59,21 @@ void menu();
 void priority(Input* inp);
 int compareArrival(const void *s1, const void *s2);
 int comparePriority(const void *p1, const void *p2);
-//int compare(struct Process* s1, struct Process* s2);
+void addToReadyQ(Input* inp, Node* rq, int* ct);
 
 //fileIO.c
 void loadInput(char* filename, Input* inp);
 Input processInput(char* filename);
 int countLines(char* filename);
+
+
+
+//header priorityQueue.c
+Node* newNode(int d, int p, char l);
+int peek(Node** head);
+void pop(Node** head);
+void push(Node** head, int b, int p, char l);
+int isEmpty(Node** head);
 
 
 #endif
