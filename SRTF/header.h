@@ -19,14 +19,14 @@
 
 /*constants*/
 
-#define MAX_SIZE 30 /*Max number of processes*/
+#define MAX_SIZE 100 /*Max number of processes*/
 
 /*
 * Structs
 */
 struct Process
 {
-	int arrivalTime, burstTime, priority; /*all integers*/
+	int arrivalTime, burstTime; /*all integers*/
 	char letter;
 	
 };
@@ -41,7 +41,7 @@ typedef struct
 typedef struct node {
     int burst;
     char letter;
-     
+ 
     struct node* next;
  
 } Node;
@@ -53,9 +53,8 @@ void printInfo(Input* inp);
 void menu();
 
 //schedulers.c
-void priority(Input* inp);
+void shortestFirst(Input* inp);
 int compareArrival(const void *s1, const void *s2);
-int comparePriority(const void *p1, const void *p2);
 void addToReadyQ(Input* inp, Node** rq, int* ct);
 
 //fileIO.c
@@ -63,10 +62,10 @@ void loadInput(char* filename, Input* inp);
 Input processInput(char* filename);
 int countLines(char* filename);
 
-//header priorityQueue.c
-Node* newNode(int d, int p, char l);
-void pop(Node** head);
-void push(Node** head, int b, int p, char l);
+//header shortestFirst.c
+Node* createNode(int b, char l);
+void dequeue(Node** head);
+void queue(Node** head, int b, char l);
 int isEmpty(Node** head);
 
 

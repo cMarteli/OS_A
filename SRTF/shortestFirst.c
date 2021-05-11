@@ -1,7 +1,7 @@
 /*  ================================== */
 /*   Author: Caio Marteli              */
 /*   Student ID: 19598552              */
-/*   Name: priorityQueue.c             */
+/*   Name: shortestFirst.c             */
 /*   OS Assignment                     */
 /*  ================================== */
 #include "header.h"
@@ -10,22 +10,21 @@
 * Creates new readyQeue by creating head node also holds letter for PID
 * IMPORT: [b]urst(integer), [p]riority(integer), [l]etter(char)
 */
-Node* newNode(int d, int p, char l)
+Node* createNode(int b, char l)
 {
-    Node* temp = (Node*)malloc(sizeof(Node));
-    temp->burst = d;
-    temp->priority = p;
-    temp->letter = l;
-    temp->next = NULL;
+    Node* head = (Node*)malloc(sizeof(Node));
+    head->burst = b;
+    head->letter = l;
+    head->next = NULL;
  
-    return temp;
+    return head;
 }
  
 /*
 * Removes element at head of list
 * IMPORT: head(struct pointer)
 */
-void pop(Node** head)
+void dequeue(Node** head)
 {
     Node* temp = *head;
     (*head) = (*head)->next;
@@ -33,16 +32,16 @@ void pop(Node** head)
 }
  
 /*
-* Function to push according to priority
-* IMPORT: [b]urst(integer), [p]riority(integer), [l]etter(char)
+* Queue according to priority in this case priority is shortest burst
+* IMPORT: [b]urst(integer), [l]etter(char)
 */
-void push(Node** head, int b, int p, char l)
+void queue(Node** head, int b, char l)
 {
     Node* start = (*head); 
-    Node* temp = newNode(b, p, l);
+    Node* temp = createNode(b, l);
 
-    // If new head of has lesser priority we insert new node before head.
-    if ((*head)->priority > p) 
+    // If new head of has lesser burst we insert new node before head.
+    if ((*head)->burst > b) 
     { 
         temp->next = *head;
         (*head) = temp;
@@ -50,7 +49,7 @@ void push(Node** head, int b, int p, char l)
     else 
     { 
         // Goes through list and finds position to insert node
-        while (start->next != NULL && start->next->priority < p) 
+        while (start->next != NULL && start->next->burst < b) 
         {
             start = start->next;
         }

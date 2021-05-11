@@ -8,7 +8,7 @@
 
 # Makefile Variables
 CC		 = gcc
-EXEC	 = program #Change
+EXEC	 = PP
 CFLAGS = #-Wall -ansi -pedantic
 OBJ 	 = main.o fileIO.o schedulers.o priorityQueue.o#Change
 

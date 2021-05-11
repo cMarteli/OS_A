@@ -34,7 +34,7 @@ void menu()
 			else
 			{
 				enter(userStr);
-				//enter("burst_list"); //debug HARDCODED
+				//enter("burst_list2"); //debug HARDCODED
 			}
 	}while(pass != TRUE);
 }
@@ -47,7 +47,7 @@ void enter(char* filename)
 	Input input;
 	loadInput(filename, &input);
 	//printInfo(&input); //DEBUG
-	priority(&input);
+	shortestFirst(&input);
 }
 
 /*
@@ -60,7 +60,7 @@ void printInfo(Input* inp)
 	printf("Total Processes:%d\n",inp->totalProcesses);
 	for(i = 0; i < inp->totalProcesses; i++)
 	{
-		printf("Symbol:%c\nA.T:%d\nB.T:%d\nPRIO:%d\n\n",
-			inp->processes[i].letter, inp->processes[i].arrivalTime, inp->processes[i].burstTime, inp->processes[i].priority);
+		printf("Symbol:%c\nA.T:%d\nB.T:%d\n\n",
+			inp->processes[i].letter, inp->processes[i].arrivalTime, inp->processes[i].burstTime);
 	}
 }

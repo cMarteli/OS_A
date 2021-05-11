@@ -41,8 +41,8 @@ Input processInput(char* filename)
 
 	for(i = 0; i < lineNum; i++) /*loads rest of file into struct*/
 	{
-		fscanf(fp,"%d %d %d", \
-			&inp.processes[i].arrivalTime, &inp.processes[i].burstTime, &inp.processes[i].priority);
+		fscanf(fp,"%d %d", \
+			&inp.processes[i].arrivalTime, &inp.processes[i].burstTime);
 		/*assigns process a letter for gant*/
 		inp.processes[i].letter = symbol;
 		symbol++;

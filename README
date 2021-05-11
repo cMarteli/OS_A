@@ -3,8 +3,9 @@ TO COMPILE:
 $ Make
 
 TO RUN
-$ ./program
-
+$ ./PP
+$ ./SRTF
+$ ./ThreadProgram
 
 the program will let you enter a file name my test file provided are called burst_list and burst_list2, invalid file name will throw a file not found error and close program. 
 Make sure there are no empty lines at the end of the input file.

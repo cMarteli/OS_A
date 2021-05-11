@@ -19,7 +19,7 @@
 
 /*constants*/
 
-#define MAX_SIZE 30 /*Max number of processes*/
+#define MAX_SIZE 100 /*Max number of processes*/
 
 /*
 * Structs

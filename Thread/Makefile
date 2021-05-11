@@ -8,9 +8,9 @@
 
 # Makefile Variables
 CC		 = gcc
-EXEC	 = SRTF #Change
+EXEC	 = ThreadProgram
 CFLAGS = #-Wall -ansi -pedantic
-OBJ 	 = main.o fileIO.o schedulers.o shortestFirst.o#Change
+OBJ 	 = parentThread.o
 
 # Add FANCY to the CFLAGS and recompile the program
 ifdef FANCY 
@@ -27,14 +27,9 @@ endif
 $(EXEC) : $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC)
 
-main.o : main.c #change and add classes
-fileIO.o : fileIO.c
-schedulers.o : schedulers.c
-shortestFirst.o : shortestFirst.c
-	$(CC) $(CFLAGS) main.c -c
-	$(CC) $(CFLAGS) fileIO.c -c
-	$(CC) $(CFLAGS) schedulers.c -c
-	$(CC) $(CFLAGS) shortestFirst.c -c
+parentThread.o : parentThread.c #change and add classes
+
+	$(CC) $(CFLAGS) parentThread.c -c
 
 clean:
 	rm -f $(EXEC) $(OBJ)
