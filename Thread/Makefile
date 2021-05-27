@@ -9,7 +9,7 @@
 # Makefile Variables
 CC		 = gcc
 EXEC	 = ThreadProgram
-CCFLAGS = -Wall
+CCFLAGS = -Wall -Werror
 LFLAGS = -lpthread
 OBJ 	 = parentThread.o
 

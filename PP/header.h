@@ -71,6 +71,4 @@ Node* createNode(int d, int p, char l);
 void dequeue(Node** head);
 void queue(Node** head, int b, int p, char l);
 int isEmpty(Node** head);
-
-
 #endif

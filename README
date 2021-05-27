@@ -9,3 +9,7 @@ $ ./ThreadProgram
 
 the program will let you enter a file name my test file provided are called burst_list and burst_list2, invalid file name will throw a file not found error and close program. 
 Make sure there are no empty lines at the end of the input file.
+
+
+Thread program is unfinished, I approached it the wrong way and fixing it would take more time so I decided to
+submit as is. My apologies.

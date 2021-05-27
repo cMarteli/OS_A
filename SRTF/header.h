@@ -26,7 +26,7 @@
 */
 struct Process
 {
-	int arrivalTime, burstTime; /*all integers*/
+	int arrivalTime, burstTime, priority; /*all integers*/
 	char letter;
 	
 };

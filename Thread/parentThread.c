@@ -8,72 +8,87 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 
+/*Boolean*/
+#define FALSE 0
+#define TRUE !FALSE
+
+//Declaring thread condition variable
+pthread_cond_t cond1 = PTHREAD_COND_INITIALIZER;
+
+//Declaring mutex
+pthread_mutex_t lock1 = PTHREAD_MUTEX_INITIALIZER;
 /*
 * Struct serves as storage since we can only parse one pointer to threads
-*
 */
 typedef struct
 {
-	char buffer1[15];
-	char buffer2[15];
+	char buffer1[40];
+	char buffer2[40];
 	
 } Buffers;
 
-void *runA(void *arg)
-{
+void *threadA(void *arg)
+{	
+	pthread_cond_init(&cond1, NULL);
+	//Buffers *bf = (Buffers*) arg;
+	pthread_mutex_lock(&lock1);
 
-	printf("Hello from the first thread :D\n");
-	Buffers *bf = (Buffers*) arg;
+	printf("Thread A init...\n");		
+	execl("../PP/PP", "PP", (char*) NULL); //CANNOT RUN AS THREAD AS IT REPLACES PROCESS
+	pthread_cond_wait(&cond1, &lock1);
+	// Start critical section
+	//pthread_mutex_lock(&lock1);
 
+	// End critical section
+	pthread_mutex_unlock(&lock1);
 
-	printf("echo: %s\n", bf->buffer1); //debug
-	system("../PP/./PP"); //runs PP sim
-	//system(bf->buffer);
-	//pthread_mutex_unlock(&main);
-
-	return NULL;
+	pthread_exit(NULL);
 }
 
-void *runB(void *arg)
+/*
+* Thread B runs PP program
+*/
+void *threadB(void *arg)
 {
-	printf("hello from the second thread :)\n");
-	//system("../SRTF/./SRTF"); //runs SRTF sim
 
-	/*
-	int *num = (int *) value;
-	printf("The value of num is %d\n", *num);
-	*/
-	return NULL;
+	printf("Thread B init...\n");
+	execl("../SRTF/SRTF", "SRTF", (char*) NULL); //runs SRTF sim
+	pthread_cond_wait(&cond1, &lock1);
+	
+	pthread_exit(NULL);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
 	Buffers bf; //Struct used to store buffers
-	pthread_t threadA; //thread ID
-	//pthread_t threadB;
+	pthread_cond_init(&cond1, NULL);
+	pthread_t idA; //Thread ID's
+	//pthread_t idB;
 	
+	//creates new threads(thread ID, thread attributes, function to run, arguments)
+	pthread_create(&idA, NULL, threadA, &bf); //runs thread A
+	//pthread_create(&idB, NULL, threadB, &bf); ////runs thread B
+
 	printf("Enter a valid filename or QUIT\n");
 	scanf("%s", bf.buffer1);
-	
+	//pthread_cond_signal(&cond1);
 
-	//creates new threads
-	//thread ID, thread attributes, function to run, arguments (pointer)
-	pthread_create(&threadA, NULL, runA, &bf);
-	//wait until thread work is done
-	pthread_join(threadA, NULL);
-
-	//pthread_create(&threadB, NULL, runB, buffer1);
-	//pthread_mutex_lock(&runB);
-
+	//pthread_join(idA, NULL);
 	
+	//wait until threads work is done (id, parameter to return)
 	
+	//pthread_join(idB, NULL);
 	
-	return EXIT_SUCCESS;
+	return 0;
 }
 
 
 /*
+
+	
+//pthread_mutex_lock(&runB);
 void suspendMe()
 { // tell the thread to suspend
     pthread_mutex_lock(&runB);
