@@ -1,4 +1,3 @@
-
 /*  ================================== */
 /*   Author: Caio Marteli              */
 /*   Student ID: 19598552              */
@@ -13,12 +12,11 @@
 #include <string.h>
 #include <ctype.h>
 
-/*Boolean*/
+/*Boolean definition*/
 #define FALSE 0
 #define TRUE !FALSE
 
 /*constants*/
-
 #define MAX_SIZE 100 /*Max number of processes*/
 
 /*
@@ -28,47 +26,51 @@ struct Process
 {
 	int arrivalTime, burstTime, priority; /*all integers*/
 	char letter;
-	
+
 };
 typedef struct
 {
 	int totalProcesses; /*all integers*/
 	struct Process processes[MAX_SIZE]; /*Array of processes*/
-	
+
 } Input;
 
-// Node
+/*
+* Node
+*/
 typedef struct node {
     int burst;
     char letter;
- 
-    // Lower values indicate higher priority
+
+    /*Lower values indicate higher priority*/
     int priority;
- 
+
     struct node* next;
- 
+
 } Node;
 
-//Methods
-//main
+/* Method definitions */
+
+/* main.c */
 void enter(char* filename);
 void printInfo(Input* inp);
 void menu();
 
-//schedulers.c
+/* schedulers.c */
 void priority(Input* inp);
 int compareArrival(const void *s1, const void *s2);
 void addToReadyQ(Input* inp, Node** rq, int* ct);
 double getAvgBurst(Input* inp);
 
-//fileIO.c
+/* fileIO.c */
 void loadInput(char* filename, Input* inp);
 Input processInput(char* filename);
 int countLines(char* filename);
 
-//header priorityQueue.c
+/* priorityQueue.c */
 Node* createNode(int d, int p, char l);
 void dequeue(Node** head);
 void queue(Node** head, int b, int p, char l);
 int isEmpty(Node** head);
+
 #endif
